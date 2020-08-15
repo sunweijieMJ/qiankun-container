@@ -1,0 +1,150 @@
+  @charset "utf-8";
+  // 边框的混合宏(mixin);
+
+  // border;
+  @mixin bd($args...) {
+      border: addUnits($args...);
+  }
+
+  // border-top;
+  @mixin bdt($args...) {
+      border-top: addUnits($args...);
+  }
+  // border-right;
+  @mixin bdr($args...) {
+      border-right: addUnits($args...);
+  }
+
+  // border-bottom;
+  @mixin bdb($args...) {
+      border-bottom: addUnits($args...);
+  }
+
+  // border-left;
+  @mixin bdl($args...) {
+      border-left: addUnits($args...);
+  }
+
+  // border-top && border-bottom;
+  @mixin bdtb($args1, $args2:$args1){
+      border-top: addUnits($args1);
+      border-bottom: addUnits($args2);
+  }
+
+  // border-right && border-left;
+  @mixin bdrl($args1, $args2:$args1){
+      border-right: addUnits($args1);
+      border-left: addUnits($args2);
+  }
+
+  // border-color;
+  @mixin bdc($args...) {
+      border-color: $args;
+  }
+
+  // 边框图片;
+  @mixin bdi($image){
+      @include css3(border-image, $image, false, true);
+  }
+
+  // 取消边框;
+  @mixin no-bd{
+      border: none;
+  }
+
+  // 取消上边框;
+  @mixin no-bdt{
+      border-top: none;
+  }
+
+  // 取消右边框;
+  @mixin no-bdr{
+      border-right: none;
+  }
+
+  // 取消下边框;
+  @mixin no-bdb{
+      border-bottom: none;
+  }
+
+  // 取消左边框;
+  @mixin no-bdl{
+      border-left: none;
+  }
+
+  // 取消上边框&&下边框;
+  @mixin no-bdtb{
+      border-top: none;
+      border-bottom: none;
+  }
+
+  // 取消右边框&&左边框;
+  @mixin no-bdrl{
+      border-right: none;
+      border-left: none;
+  }
+
+  // 描边;
+  @mixin oln($args...){
+      outline: addUnits($args...);
+  }
+
+  // 描边的颜色;
+  @mixin oln-c($args...){
+      outline-color: $args;
+  }
+
+  // 描边的圆角;
+  @mixin oln-r($args...){
+      outline-radius: addUnits($args);
+  }
+
+  // 描边的样式;
+  @mixin oln-s($args:solid){
+      outline-style: $args;
+  }
+
+  // 边框的宽度;
+  @mixin oln-w($args...){
+      outline-width: addUnits($args);
+  }
+
+  // 描边的偏移;
+  @mixin oln-o($args){
+      outline-offset: addUnits($args);
+  }
+
+  // 分割线 |;
+  @mixin cut-line($mar:0 10px, $color:#999, $fz:14) {
+      @include mar($mars);
+      @include c($color);
+      @include fz($fz);
+  }
+
+  // 分割线 / (面包屑导航);
+  @mixin cut-line2($pad:0 10px, $color:#ccc, $fz:14) {
+      &:before {
+          @include pad($pad);
+          @include c($color);
+          @include fz($fz);
+          content: "/\00a0";
+      }
+  }
+
+  // 细边框
+  @mixin thin-line($borderColor, $borderRadius) {
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: left top;
+      border: 1px solid $borderColor;
+      border-radius: $borderRadius;
+      pointer-events: none;
+    }
+  }

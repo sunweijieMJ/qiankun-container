@@ -1,0 +1,102 @@
+  @charset "utf-8";
+
+  // 判断是否为数字;
+  @function TestNum( $num1,$num2 ){
+      @if(not unitless($num1) or not unitless($num2)){
+          @debug "其中数值有单位";
+          @return false;
+      }
+      @if( type-of($num1) == number and type-of($num1) == number ) {
+          @return true;
+      }
+      @else{
+          @debug "其中有值不数字";
+          @return false;
+      }
+  }
+
+  // 判断是否为数字返回true/false;
+  @function returnNum( $num ){
+      @if( type-of($num) == number ){
+          @return true;
+      }
+      @else{
+          @return false;
+      }
+  }
+
+  // 判断是否为字符串;
+  @function returnStr( $str,$value ){
+      @if( $value ){
+        @if(( type-of( $num1 ) == number ) and ( $num1 == $value)){
+            @warn  "字符串相等";
+            @return true;
+        }
+        @else{
+            @warn  "字符串不相等";
+            @return false;
+        }
+      }
+      @else{
+          @if( type-of($num1) == number ){
+              @warn  "非字符串";
+              @return true;
+          }
+          @else{
+              @warn  "字符串";
+              @return false;
+          }
+      }
+  }
+
+  //添加单位;
+  @function addUnits( $arg1,$arg2... ){
+      $new-args : join( $arg1,$arg2 );
+      $len : length($new-args );
+      $arr : null;
+      $new-arg : null;
+      $argUnit : null;
+
+      @for $i from 1 through $len {
+          $new-arg : nth( $new-args , $i );
+          @if( type-of($new-arg) == number ){
+              $argUnit : testUnit( $new-arg );
+              $arr : $arr $argUnit;
+          }
+          @else{
+              $arr : $arr $new-arg;
+          }
+      }
+      @return $arr;
+  }
+
+  //检验单位;
+  @function testUnit( $args ){
+      $filter-units : px, rem, em, rpx, auto, vw, vh, vmin, vmax, fr, deg;
+      @each $o in $filter-units {
+          @if(str-index('#{$args}', $o)){
+              @return $args;
+          }
+          // 保持数字不变keep缩写k
+          @else if(str-index('#{$args}', k)){
+              $new-args: '' + $args + '';
+              $new-len: (str-length($new-args) - 1);
+              @return unquote(str-slice($new-args, 1, $new-len));
+          }
+      }
+      @if(unit( $args ) == '%' or $args == 0){
+          @return $args;
+      }
+      @else if($global-unit == rem){
+          @return px2rem($args);
+      }
+      @else if($global-unit == rpx){
+          @return px2rpx($args);
+      }
+      @else if(unitless($args)){
+          @return $args+$global-unit;
+      }
+      @else{
+          @return $args;
+      }
+  }

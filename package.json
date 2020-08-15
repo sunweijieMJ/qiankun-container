@@ -1,0 +1,15 @@
+{
+    "name": "vue-qiankun",
+    "version": "1.0.0",
+    "description": "vue qiankun spa",
+    "private": true,
+    "scripts": {
+        "install": "node config/install.js",
+        "start": "node config/start.js",
+        "build": "node config/build.js"
+    },
+    "engines": {
+        "node": ">=12.14.0",
+        "npm": ">=6.13.4"
+    }
+}

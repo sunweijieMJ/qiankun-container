@@ -1,0 +1,48 @@
+  @charset "utf-8";
+  // 文本的混合宏(mixin);
+
+  // 单行省略
+  @mixin tofl($width) {
+      max-width: $width;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -ms-text-overflow: ellipsis;
+  }
+
+  // 多行省略
+  @mixin erow($row: 2) {
+      @include css3(display, box, $prefix:false, $suffix:true);
+      @include css3(box-orient, vertical);
+      @include css3(line-clamp, $row);
+      overflow: hidden;
+  }
+
+  // 隐藏文字
+  @mixin hide-text {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-indent: -9000px;
+  }
+
+  // 显示图标;
+  @mixin replace-text($image, $x: 50%, $y: 50%){
+      @include hide-text();
+      background-image: $image;
+      background-repeat: no-repeat;
+      background-position: addUnits($x) addUnits($y);
+  }
+
+  // 设置文字对齐方式;
+  @mixin ta($direction:left , $arg:false){
+      text-align: $direction;
+      @if($arg){
+          text-justify: $arg
+      }
+  }
+
+  // 文字排列方式;
+  @mixin wm($arg: normal){
+      writing-mode: $arg;
+  }

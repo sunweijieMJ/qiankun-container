@@ -1,0 +1,212 @@
+  @charset "utf-8";
+
+  // css3的混合宏(mixin);
+  //////////////////////////////////////////////////////
+  // css3前缀:                                         //
+  //  $style     :  样式名 ;                           //
+  //  $frames    :  样式内容;                          //
+  //  $prefix    :  是否添加样式前缀,默认开启;            //
+  //  $suffix    :  是否添加样式后缀,默认关闭;            //
+  //////////////////////////////////////////////////////
+  @mixin css3($style, $frames, $prefix:true, $suffix:false) {
+      @if($prefix) {
+          @if($suffix) {
+              @each $goods in $vendors {
+                  @if($prefixWebkit and $goods == 'webkit') {
+                      -#{$goods}-#{$style}: -#{$goods}-#{$frames};
+                  }
+                  @else if($prefixMozilla and $goods == 'moz') {
+                      -#{$goods}-#{$style}: -#{$goods}-#{$frames};
+                  }
+                  @else if($prefixMicrosoft and $goods == 'ms') {
+                      -#{$goods}-#{$style}: -#{$goods}-#{$frames};
+                  }
+                  @else if($prefixOpera and $goods == 'o') {
+                      -#{$goods}-#{$style}: -#{$goods}-#{$frames};
+                  }
+              }
+              #{$style}: #{$frames};
+          }
+          @else {
+              @each $goods in $vendors {
+                  @if($prefixWebkit and $goods == 'webkit') {
+                      -#{$goods}-#{$style}: #{$frames};
+                  }
+                  @else if($prefixMozilla and $goods == 'moz') {
+                      -#{$goods}-#{$style}: #{$frames};
+                  }
+                  @else if($prefixMicrosoft and $goods == 'ms') {
+                      -#{$goods}-#{$style}: #{$frames};
+                  }
+                  @else if($prefixOpera and $goods == 'o') {
+                      -#{$goods}-#{$style}: #{$frames};
+                  }
+              }
+              #{$style}: #{$frames};
+          }
+      }
+      @else {
+          @if($suffix) {
+              @each $goods in $vendors {
+                  @if( $prefixWebkit and $goods == 'webkit') {
+                      #{$style}: -#{$goods}-#{$frames};
+                  }
+                  @else if( $prefixMozilla and $goods == 'moz') {
+                      #{$style}: -#{$goods}-#{$frames};
+                  }
+                  @else if($prefixMicrosoft and $goods == 'ms') {
+                      #{$style}: -#{$goods}-#{$frames};
+                  }
+                  @else if($prefixOpera and $goods == 'o') {
+                      #{$style}: -#{$goods}-#{$frames};
+                  }
+              }
+              #{$style}: #{$frames};
+          }
+          @else {
+              #{$style}: #{$frames};
+          }
+      }
+  }
+
+  // 圆角 @include radius(24,100%);
+  @mixin radius($num:1234, $size: 5px) {
+      @if $num==1234 {
+          @include css3(border-radius, $size);
+      }
+      @else if $num==12 {
+          @include css3(border-top-left-radius, $size);
+          @include css3(border-top-right-radius, $size);
+      }
+      @else if $num==23 {
+          @include css3(border-top-right-radius, $size);
+          @include css3(border-bottom-right-radius, $size);
+      }
+      @else if $num==34 {
+          @include css3(border-bottom-right-radius, $size);
+          @include css3(border-bottom-left-radius, $size);
+      }
+      @else if $num==14 {
+          @include css3(border-bottom-left-radius, $size);
+          @include css3(border-top-left-radius, $size);
+      }
+      @else if $num==13 {
+          @include css3(border-top-left-radius, $size);
+          @include css3(border-bottom-right-radius, $size);
+      }
+      @else if $num==24 {
+          @include css3(border-top-right-radius, $size);
+          @include css3(border-bottom-left-radius, $size);
+      }
+  }
+
+  // 盒子阴影 @include boxshadow(24,100%);
+  @mixin boxshadow($shadow...) {
+      @include css3(box-shadow, $shadow);
+  }
+
+  // 设置content;
+  @mixin cnt($content...) {
+      @if(length($content) >=1) {
+          content: $content;
+      }
+      @else {
+          content: '';
+      }
+  }
+
+  //是否允许用户选中文本;
+  @mixin usr-s($arg: text) {
+      @include css3(user-select, $arg);
+  }
+
+  // 禁用元素事件
+  // 1. 阻止任何点击动作的执行
+  // 2. 使链接显示为默认光标(cursor:default)
+  // 3. 阻止触发hover和active状态
+  // 4. 阻止JavaScript点击事件的触发
+  @mixin pe($arg:none) {
+      pointer-events: $arg;
+  }
+
+  // 美化占位符 placeholder 样式
+  @mixin beauty-placeholder($fz:12, $color: #999, $align: left) {
+      &:-moz-placeholder {
+          @include fz($fz);
+          @include c($color);
+          @include ta($align);
+      }
+      &:-ms-input-placeholder {
+          @include fz($fz);
+          @include c($color);
+          @include ta($align);
+      }
+      &::-webkit-input-placeholder {
+          @include fz($fz);
+          @include c($color);
+          @include ta($align);
+      }
+  }
+
+  // 美化选中文本
+  @mixin beauty-select( $bg:#00F, $color:#fff, $obj:'') {
+      #{$obj}::selection {
+          background: $bg;
+          color: $color;
+      }
+      #{$obj}::-moz-selection {
+          background: $bg;
+          color: $color;
+      }
+      #{$obj}::-webkit-selection {
+          background: $bg;
+          color: $color;
+      }
+      #{$obj}::-ms-selection {
+          background: $bg;
+          color: $color;
+      }
+      #{$obj}::-o-selection {
+          background: $bg;
+          color: $color;
+      }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // css3 滚动条;                                                          //
+  // 例子 :                                                                //
+  //  @include scrollbar(scrollbar-track){                                 //
+  //    #{$browser}box-shadow: inset 0 0 6px rgba(0,0,0,0.3);              //
+  //    background-color: #f5f5f5;                                         //
+  //  };                                                                   //
+  //  @include scrollbar(scrollbar){                                       //
+  //    width: 12px;                                                       //
+  //  };                                                                   //
+  //  @include scrollbar(scrollbar-thumb){                                 //
+  //    #{$browser}border-radius: 10px;                                    //
+  //    #{$browser}box-shadow: inset 0 0 6px rgba(0,0,0,.3);               //
+  //    background-color: #fbd0c9;                                         //
+  //  };                                                                   //
+  ///////////////////////////////////////////////////////////////////////////
+  @mixin scrollbar($style, $obj:'') {
+      #{$obj}::-webkit-#{$style} {
+          $browser: '-webkit-' !global;
+          @content;
+      }
+      #{$obj}::-moz-#{$style} {
+          $browser: '-moz-' !global;
+          @content;
+      }
+      #{$obj}::-ms-#{$style} {
+          $browser: '-ms-' !global;
+          @content;
+      }
+      #{$obj}::-o-#{$style} {
+          $browser: '-o-' !global;
+          @content;
+      }
+      #{$obj}::#{$style} {
+          $browser: '' !global;
+          @content;
+      }
+  }

@@ -1,0 +1,126 @@
+  @charset "utf-8";
+  // 定位的混合宏(mixin);
+
+  // @include position(absolute,(t:10px,l:0px,z:5));
+  @mixin position($position, $args:false){
+      position: $position;
+      @include position_each($args);
+  }
+
+  // @include abs((t:10px,l:0px,z:5));
+  @mixin abs($args:false){
+      position: absolute;
+      @include position_each($args);
+  }
+
+  // @include rel((t:10px,l:0px,z:5));
+  @mixin rel($args:false){
+      position: relative;
+      @include position_each($args);
+  }
+
+  // @include fixed((t:10px,l:0px,z:5));
+  @mixin fixed($args:false){
+      position: fixed;
+      @include position_each( $args );
+  }
+
+  //遍历定位属性:top\right\bottom\left\z-index\width\height;
+  @mixin position_each($args){
+      $parameter: t, r, b, l, z, w, h;
+      $parameter2: (t:top, r:right, b:bottom, l:left, z:z-index, w:width, h:height);
+      @each $o, $s in $args {
+          $i: index($parameter, $o);
+          @if($i and type-of($i) == number){
+              @if($i == 5){
+                  #{map-get($parameter2, $o)}: $s;
+              }
+              @else{
+                  #{map-get($parameter2, $o)}: addUnits($s);
+              }
+          }
+      }
+  }
+
+  // 垂直,水平居中
+  @mixin positionAb($x , $y) {
+      position: absolute;
+      left:50%;
+      top:50%;
+      width: $x;
+      height: $y;
+      margin-left:-$x/2;
+      margin-top:-$y/2; z-index:99;
+  }
+
+  //定位top值;
+  @mixin t($top:0){
+      top: addUnits($top);
+  }
+
+  //定位left值;
+  @mixin l($left:0){
+      left: addUnits($left);
+  }
+
+  //定位bottom值;
+  @mixin b($bottom:0){
+      bottom: addUnits($bottom);
+  }
+
+  //定位right值;
+  @mixin r($right:0){
+      right: addUnits($right);
+  }
+
+  // 定位top/left值;
+  @mixin tl($top:0, $left:0, $zindex:false){
+      @include t($top);
+      @include l($top);
+      @if($zindex){
+          @include z($zindex);
+      }
+  }
+
+  // 定位right/left值;
+  @mixin rl($right:0, $left:0, $zindex:false){
+      @include r($right);
+      @include l($left);
+      @if($zindex){
+          @include z($zindex);
+      }
+  }
+
+  // 定位bottom/left值;
+  @mixin bl($bottom:0, $left:0, $zindex:false){
+      @include b($bottom);
+      @include l($left);
+      @if($zindex){
+          @include z($zindex);
+      }
+  }
+
+  // 定位bottom/right值;
+  @mixin br($bottom:0,$right:0,$zindex:false){
+      @include b($bottom);
+      @include r($right);
+      @if($zindex){
+          @include z($zindex);
+      }
+  }
+
+  // 定位top/left/bottom/right值;
+  @mixin trbl($top:0, $left:0, $bottom:0, $right:0, $zindex:false){
+      @include t($top);
+      @include l($left);
+      @include b($bottom);
+      @include r($right);
+      @if($zindex){
+          @include z($zindex);
+      }
+  }
+
+  // 设置层级数;
+  @mixin z($num){
+      z-index: $num;
+  }

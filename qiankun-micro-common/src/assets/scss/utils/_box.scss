@@ -1,0 +1,85 @@
+  @charset "utf-8";
+  // 边距的混合宏;
+
+  // 设置margin;
+  @mixin mar($size...){
+      margin: addUnits($size...);
+  }
+
+  // 设置padding;
+  @mixin pad($size...){
+      padding: addUnits($size...);
+  }
+
+  // 设置margin-top;
+  @mixin mt($size){
+      margin-top: addUnits($size);
+  }
+
+  // 设置margin-right;
+  @mixin mr($size){
+      margin-right: addUnits($size);
+  }
+
+  // 设置margin-bottom;
+  @mixin mb($size){
+      margin-bottom: addUnits($size);
+  }
+
+  // 设置margin-left;
+  @mixin ml($size){
+      margin-left: addUnits($size);
+  }
+
+  // 设置padding-top;
+  @mixin pt($size){
+      padding-top: addUnits($size);
+  }
+
+  // 设置padding-right;
+  @mixin pr($size){
+      padding-right: addUnits($size);
+  }
+
+  // 设置padding-bottom;
+  @mixin pb($size){
+      padding-bottom: addUnits($size);
+  }
+
+  // 设置padding-left;
+  @mixin pl($size){
+      padding-left: addUnits($size);
+  }
+
+  // 设置margin-top && margin-bottom;
+  @mixin mtb( $size1,$size2:$size1 ){
+      margin-top: addUnits($size1);
+      margin-bottom: addUnits($size2);
+  }
+
+  // 设置margin-left && margin-right;
+  @mixin mlr( $size1,$size2:$size1 ){
+      margin-left: addUnits($size1);
+      margin-right: addUnits($size2);
+  }
+
+  // 设置padding-top && padding-bottom;
+  @mixin ptb( $size1,$size2:$size1 ){
+      padding-top: addUnits($size1);
+      padding-bottom: addUnits($size2);
+  }
+
+  // 设置padding-left && padding-right;
+  @mixin plr( $size1,$size2:$size1 ){
+      padding-left: addUnits($size1);
+      padding-right: addUnits($size2);
+  }
+
+  // margin | padding
+  @mixin distance($margin, $padding: 0) {
+      margin: $margin;
+      padding: $padding;
+  }
+
+
+

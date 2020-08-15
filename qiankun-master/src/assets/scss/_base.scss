@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+// 基础配置
+@import './_config.scss';
+
+// 公共类
+@import './utils/_class.scss';
+
+// mixin
+@import './utils/_mixin.scss';
+@import './utils/_animation.scss';
+@import './utils/_background.scss';
+@import './utils/_border.scss';
+@import './utils/_box.scss';
+@import './utils/_css3.scss';
+@import './utils/_font.scss';
+@import './utils/_function.scss';
+@import './utils/_group.scss';
+@import './utils/_position.scss';
+@import './utils/_size.scss';
+@import './utils/_text.scss';
+

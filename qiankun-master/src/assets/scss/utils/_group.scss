@@ -1,0 +1,152 @@
+  @charset "utf-8";
+  // 混合缩写的混合宏(mixin);
+
+  // 适配pc端
+  @mixin pc($width){
+    $xs : 100px/(750px/640px);
+    @media (min-width:($width)){
+      html{
+        width: 640px !important;
+        font-size:$xs !important;
+        background-color: $backcolor !important;
+        margin: auto !important;
+      }
+    }
+  }
+
+  // 设置width & height & line-height;
+  @mixin whl($width, $height, $line-height:$height) {
+      @include w($width);
+      @include h($height);
+      @include lh($line-height);
+  }
+
+  // 设置width & height & font-size & line-height;
+  @mixin whfl($width, $height, $line-height, $font) {
+      @include w($width);
+      @include h($height);
+      @include lh($line-height);
+      @include fz($font);
+  }
+
+  // 设置width & height & font-size & line-height & color;
+  @mixin whflc($width, $height, $font, $line-height, $color) {
+      @include w($width);
+      @include h($height);
+      @include fz($font);
+      @include lh($line-height);
+      @include c($color);
+  }
+
+  // 设置width & height & font-size & line-height & color & font-weight;
+  @mixin whflcb($width, $height, $font, $line-height, $color, $bold:bold) {
+      @include w($width);
+      @include h($height);
+      @include fz($font);
+      @include lh($line-height);
+      @include c($color);
+      @include fb($bold);
+  }
+
+  // 设置height & line-height;
+  @mixin hl($height, $line-height:$height) {
+      @include h($height);
+      @include lh($line-height);
+  }
+
+  // 设置height & font-size & line-height & color;
+  @mixin hflc($height, $font, $line-height, $color) {
+      @include h($height);
+      @include fz($font);
+      @include lh($line-height);
+      @include c($color);
+  }
+
+  // 设置height & font-size & line-height & color & font-weight;
+  @mixin hflcb($height, $font, $line-height, $color, $bold:bold) {
+      @include h($height);
+      @include fz($font);
+      @include lh($line-height);
+      @include c($color);
+      @include fb($bold);
+  }
+
+  // 设置width & line-height;
+  @mixin wl($width, $line-height:$height) {
+      @include w($width);
+      @include lh($line-height);
+  }
+
+  //设置font-szie & line-height;
+  @mixin flh($font, $line) {
+      @include fz( $font);
+      @include lh( $line);
+  }
+
+  //设置font-size & color;
+  @mixin fc($font, $color) {
+      @include fz( $font);
+      @include c( $color);
+  }
+
+  //设置font-size & line-height & color;
+  @mixin flc($font, $line, $color) {
+      @include fz( $font);
+      @include lh( $line);
+      @include c( $color);
+  }
+
+  //设置font-size & color & font-weight;
+  @mixin fcb($font, $color, $bold:bold) {
+      @include fz( $font);
+      @include c( $color);
+      @include fb( $bold);
+  }
+
+  //设置font-size & line-height & color & font-weight;
+  @mixin flcb($font, $line, $color, $bold:bold) {
+      @include fz( $font);
+      @include lh( $line);
+      @include c( $color);
+      @include fb( $bold);
+  }
+
+  //设置family & font-size & line-height & color;
+  @mixin faflc( $family, $font, $line, $color) {
+      @include fa($family);
+      @include fz($font);
+      @include lh($line);
+      @include c( $color);
+  }
+
+  //设置width & height;
+  @mixin wh($width, $height:$width, $attr:true) {
+    @if( $attr=='w') {
+        @include w($width);
+    }
+    @else if( $attr=='h') {
+        @include h($height);
+    }
+    @else {
+        @include w($width);
+        @include h($height);
+    }
+  }
+
+  //设置max-width & max-height;
+  @mixin mawh($width:100%, $height:$width) {
+      @include maw($width);
+      @include mah($height);
+  }
+
+  //设置min-width & min-height;
+  @mixin miwh($width:100%, $height:$width) {
+      @include miw($width);
+      @include mih($height);
+  }
+
+  //设置min-width & max-width;
+  @mixin mmw($minWidth, $maxWidth) {
+      @include miw($minWidth);
+      @include maw($maxWidth);
+  }

@@ -1,0 +1,150 @@
+@charset "utf-8";
+
+/* 样式重置 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dd,
+dl,
+dt,
+li,
+ol,
+ul,
+i,
+fieldset,
+form,
+label,
+legend {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+img {
+    display: block;
+    border: 0 none;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+body,
+a,
+input,
+button {
+    font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    outline: none;
+    border: 0;
+    padding: 0;
+    color: #666;
+    text-decoration: none;
+}
+
+input,
+textarea::placeholder {
+    font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    /* firefox */
+}
+
+ul,
+li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 清除点击出现虚拟框 */
+a {
+    color: #0AA0CC;
+    outline: none;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:link,
+    &:visited {
+        color: #0AA0CC;
+        text-decoration: none;
+    }
+}
+
+input,
+textarea,
+select {
+    outline: none;
+    // 兼容firefox
+    filter: none;
+
+    // 兼容chrome/edge/safari
+    &:-webkit-autofill {
+        box-shadow: none;
+    }
+}
+
+table {
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    text-align: center;
+    vertical-align: middle;
+}

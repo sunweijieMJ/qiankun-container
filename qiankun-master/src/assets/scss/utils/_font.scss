@@ -1,0 +1,69 @@
+  @charset "utf-8";
+  // 字体的混合宏(mixin);
+
+  // 字体样式
+  @mixin fontStyle($size, $weight:300, $color:$textcolor, $align:center) {
+      @include fz($size);
+      @include fb($weight);
+      @include lh($size);
+      @include c($color);
+      @include fz($size);
+      @include ta($align);
+  }
+
+  // 设置所有字体属性;
+  @mixin f($font...) {
+      @if(length($font) >= 2){
+          font: $font;
+      }
+      @else {
+          font-size: addUnits(nth($font, 1));
+      }
+  }
+
+  // 设置字号;
+  @mixin fz($font: 12) {
+      font-size: addUnits($font);
+  }
+
+  // 设置字体;
+  @mixin fa($family:'Microsoft Yahei') {
+      font-family: $family, '宋体', '黑体';
+  }
+
+  // 文字颜色;
+  @mixin c($color:#000, $hovercolor:false){
+      color: $color;
+      @if($hovercolor){
+          &:hover {
+              color: $hovercolor;
+          }
+      }
+  }
+
+  // 文字风格;
+  @mixin fs($value: bold){
+      font-style: $value;
+  }
+
+  // 文字加粗;
+  @mixin fb($value: bold){
+      font-weight: $value;
+  }
+
+  // 设置line-height;
+  @mixin lh($line){
+      line-height: addUnits($line);
+  }
+
+  // 文字透明;
+  @mixin transparent-text() {
+      font: 0/0 serif;
+      text-shadow: none;
+      color: transparent;
+  }
+
+  // 字符间距;
+  @mixin ls($args...){
+      letter-spacing:addUnits($args...)
+  }

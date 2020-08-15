@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'iconfont';  /* project id 1830148 */
+  src: url('//at.alicdn.com/t/font_1830148_7a4frmnkbw4.eot');
+  src: url('//at.alicdn.com/t/font_1830148_7a4frmnkbw4.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1830148_7a4frmnkbw4.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1830148_7a4frmnkbw4.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1830148_7a4frmnkbw4.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1830148_7a4frmnkbw4.svg#iconfont') format('svg');
+}
+
+// select下拉按钮
+.el-icon-close {
+  font-family: "iconfont" !important;
+  font-size: 16px !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #C8C8CB !important;
+  &::before {
+    // content: "\e6d9";
+    content: "\e71a";
+  }
+}

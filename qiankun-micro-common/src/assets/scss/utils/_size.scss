@@ -1,0 +1,60 @@
+
+  @charset "utf-8";
+  // 宽高的混合宏(mixin);
+
+  // 设置width;
+  @mixin w($width) {
+      width: addUnits($width);
+  }
+
+  // 设置height;
+  @mixin h($height) {
+      height: addUnits($height);
+  }
+
+  //设置max-height;
+  @mixin mah($height) {
+      max-height: addUnits($height);
+  }
+
+  //设置max-width;
+  @mixin maw($width) {
+      max-width: addUnits($width);
+  }
+
+  //设置min-height;
+  @mixin mih($height) {
+      min-height: addUnits($height);
+  }
+
+  //设置min-width;
+  @mixin miw( $width ) {
+      min-width: addUnits($width);
+  }
+
+  // 设置width/height;
+  @mixin size($width, $height: $width, $attr:true) {
+      @if($attr=='w') {
+          @include w($width);
+      }
+      @else if($attr=='h') {
+          @include h($height);
+      }
+      @else {
+          @include w($width);
+          @include h($height);
+      }
+  }
+
+  @mixin boxSize($width: auto, $height: auto, $color: transparent) {
+      @include size($width, $height);
+      @include bgc($color);
+  }
+
+  // 弹性盒
+  @mixin flex($direction: row, $justify: center, $align: center) {
+      @include css3(display, flex);
+      @include css3(flex-direction, $direction);
+      @include css3(justify-content, $justify);
+      @include css3(align-items, $align);
+  }

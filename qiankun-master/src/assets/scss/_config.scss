@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+$vendors: webkit moz ms o; // css3前缀;
+$prefixWebkit: true !default; // 谷歌前缀: webkit前缀
+$prefixMozilla: true !default; // 火狐前缀: moz前缀
+$prefixMicrosoft: true !default; // IE前缀: ms前缀
+$prefixOpera: true !default; // opera前缀: o前缀
+
+// 单位;
+$global-unit: px;
+
+// colors
+$backcolor: #F6F7FB;
+// 主要配色
+$mainblue: #5755B3;
+$mainbluelight: #8786BF;
+$mainpink: #F1B7D0;
+$maincyan: #6FD0EE;
+// 配色延伸
+$subcolor1: #1C1980;
+$subcolor2: #B95881;
+$subcolor3: #0AA0CC;
+$subcolor4: #BEBDEA;
+$subcolor5: #F6D7E4;
+$subcolor6: #BFF0FF;
+// 黑色递进
+$textcolor1: #222530;
+$textcolor2: #6F7178;
+$textcolor3: #909297;
+$textcolor4: #C8C8CB;
+// 边框色
+$bordercolor: #C8C8CB;
+// fonts
+
+// weight

@@ -1,0 +1,26 @@
+  @charset "utf-8";
+
+  /* 清除浮动 */
+  %clearfix {
+    zoom: 1;
+    &::after {
+      display: block;
+      height: 0;
+      content: ".";
+      clear: both;
+      overflow: hidden;
+      visibility: hidden;
+    }
+  }
+
+  /* 隐藏元素 @extend %visuallyhidden; */
+  %visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
+  }

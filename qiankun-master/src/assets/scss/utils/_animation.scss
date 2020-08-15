@@ -1,0 +1,94 @@
+  @charset "utf-8";
+  // 动画混合宏(mixin);
+
+  ///////////////////////////////////////////////////////////////////////////
+  // css3动画,只能写在调用页面,配合.css3( @style,@frames )使用;                 //
+  // 例子 :                                                                 //
+  //  @include keyframes(animation-name) {                                 //
+  //      0% {                                                             //
+  //         transform: translate3d(100%, 0, 0);                           //
+  //      }                                                                //
+  //      100% {                                                           //
+  //         transform: translate3d(0%, 0, 0);                             //
+  //      }                                                                //
+  //   }                                                                   //
+  //   .className{ @include css3(animation,animation-name 5s infinite); }  //
+  ///////////////////////////////////////////////////////////////////////////
+  @mixin keyframes($animationName) {
+      @-webkit-keyframes #{$animationName} {
+          @content;
+      }
+      @-moz-keyframes #{$animationName} {
+          @content;
+      }
+      @-ms-keyframes #{$animationName} {
+          @content;
+      }
+      @-o-keyframes #{$animationName} {
+          @content;
+      }
+      @keyframes #{$animationName} {
+          @content;
+      }
+  }
+
+  // animation动画;
+  @mixin ani($animations){
+      @include css3(animation, $animations);
+  }
+
+  // animation动画名称;
+  @mixin ani-name($names){
+      @include css3(animation-name, $names);
+  }
+
+  // animation动画成一个周期所需要的时间;
+  @mixin ani-dur($times:0.2s){
+      @include css3(animation-duration, $times);
+  }
+
+  // animation动画速度形式;
+  @mixin ani-time($motions:linear){
+      // linear                : 动画从头到尾的速度是相同的;
+      // ease                  : 默认。动画以低速开始，然后加快，在结束前变慢;
+      // ease-in               : 动画以低速开始;
+      // ease-out              : 动画以低速结束;
+      // ease-in-out           : 动画以低速开始和结束;
+      // cubic-bezier(n,n,n,n) : 在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值;
+      @include css3(animation-timing-function, $motions);
+  }
+
+  //animation动画播放次数;
+  @mixin ani-itc($values:1){
+      // <number>(播放次数) | infinite(无限次播放);
+      @include css3(animation-iteration-count, $values);
+  }
+
+  // animation动画轮流反向播放动画;
+  @mixin ani-dir($directions:alternate){
+      // normal(动画应该正常播放) | alternate(动画应该轮流反向播放);
+      @include css3(animation-direction, $directions);
+  }
+
+  // animation动画"播放"或"暂停";
+  @mixin ani-play($states:running){
+      // paused(暂停) | running(运行);
+      @include css3(animation-play-state, $states);
+  }
+
+  // animation动画延迟时间设置;
+  @mixin ani-del($times:0.2s){
+      @include css3(animation-delay, $times);
+  }
+
+  // animation动画运动完成后的状态设置;
+  @mixin ani-fill($modes:forwards){
+      // none(默认值) | forwards(动画结束时的状态) | backwards(动画开始时的状态) | both(动画结束或开始的状态);
+      @include css3(animation-fill-mode, $modes);
+  }
+
+  // 三维闪动 bug 处理;
+  @mixin trf-fix() {
+      -webkit-backface-visibility: hidden;
+      -webkit-transform-style: preserve-3d;
+  }

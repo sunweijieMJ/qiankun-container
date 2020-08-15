@@ -1,0 +1,58 @@
+  @charset "utf-8";
+  // 背景的混合宏(mixin);
+
+  // 设置背景;
+  @mixin bg($color, $img:false, $repeat:no-repeat, $position:0 0){
+      @if($img){
+          background: url($img) $color $repeat addUnits($position);
+      }
+      @else {
+          @include bgc($color);
+      }
+  }
+
+  //设置图片背景;
+  @mixin bgi($img:false, $repeat:no-repeat, $position:0 0) {
+      @if(not $position) {
+          background: url($img) $repeat;
+      }
+      @else if(not $repeat) {
+          background: url($img) addUnits($position);
+      }
+      @else if( not $position and not $repeat) {
+          background: url($img);
+      }
+      @else {
+          background: url($img) $repeat addUnits($position);
+      }
+  }
+
+  // 设置图片背景 && background-size;
+  @mixin bgiz($img:false, $repeat:no-repeat, $position:0 0, $size:cover){
+      @include bgi($img, $repeat, $position);
+      @include bgz($size);
+  }
+
+  //设置背景颜色;
+  @mixin bgc($color){
+      background-color: $color;
+  }
+
+  // 设置background-size;
+  @mixin bgz($value:cover){
+      background-size: addUnits($value);
+  }
+
+  // 禁用样式disabled
+  @mixin disabled($bgColor: #e6e6e6, $textColor:#ababab){
+      background-color: $bgColor !important;
+      color: $textColor !important;
+      cursor: not-allowed !important;
+  }
+
+  // 透明度 @include myOpacity(0.3,93,197,16);
+  @mixin myOpacity($opacity:0.5, $r:0, $g:0, $b:0) {
+      $xx: $opacity * 100;
+      filter: alpha(opacity=$xx);
+      background-color: rgba($r, $g, $b, $opacity);
+  }

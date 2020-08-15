@@ -1,0 +1,48 @@
+  @charset "utf-8";
+
+  /* 单行省略 */
+  @mixin tofl($width) {
+      max-width: $width;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -ms-text-overflow: ellipsis;
+  }
+
+  /* 多行省略 */
+  @mixin erow($row: 2) {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: $row;
+        overflow: hidden;
+  }
+
+  /* 文字断行 */
+  @mixin breakword {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  /* 禁用样式disabled */
+  @mixin disabled($bgColor: #e6e6e6, $textColor:#ababab){
+      background-color: $bgColor;
+      color: $textColor;
+      cursor: not-allowed;
+  }
+
+  /* 细边框 */
+  @mixin thin-line($bordercolor, $borderRadius) {
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: left top;
+      border: 1px solid $bordercolor;
+      border-radius: $borderRadius;
+    }
+  }
